@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-// Route::get("/test");
+Route::any("/test", function(Request $request) {
+    //
+});
