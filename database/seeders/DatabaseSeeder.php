@@ -8,16 +8,23 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
+    public array $once_seeders = [
+        UniversitySeeder::class,
+    ];
+
     public function run(): void
     {
-        // User::factory(10)->create();
+        $this->seedOnce();
+    }
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+    public function seedOnce(): void
+    {
+        $seeders = [];
+
+        foreach ($this->once_seeders as $seed) {
+            if (isset($seed::$model) && (!$seed::$model::first())) $seeders[] = $seed;
+        }
+
+        if (!empty($seeders)) $this->call($seeders);
     }
 }

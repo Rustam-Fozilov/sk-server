@@ -21,7 +21,7 @@ return Application::configure(basePath: dirname(__DIR__))
         },
     )
     ->withSchedule(function(Schedule $schedule) {
-        $schedule->command('telescope:prune')->everyMinute();
+        $schedule->command('telescope:prune')->dailyAt('00:00');
     })
     ->withMiddleware(function (Middleware $middleware) {
         //
