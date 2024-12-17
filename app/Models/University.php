@@ -18,4 +18,9 @@ class University extends Model
         'info',
         'image_link',
     ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
 }
