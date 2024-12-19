@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\SavedController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UniversityController;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
 Route::get('search', [SearchController::class, 'search']);
+Route::post('form', [ContactFormController::class, 'store']);
 
 Route::prefix('auth')->group(function () {
     Route::post('login', [AuthController::class, 'login']);
