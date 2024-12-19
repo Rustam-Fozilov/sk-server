@@ -24,13 +24,13 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::prefix('search/history')->group(function () {
             Route::get('list', [SearchController::class, 'searchHistoryList']);
             Route::post('add', [SearchController::class, 'addSearchHistory']);
-            Route::post('delete', [SearchController::class, 'deleteSearchHistory']);
+            Route::delete('delete', [SearchController::class, 'deleteSearchHistory']);
         });
 
         Route::prefix('saved')->group(function () {
             Route::get('list', [SavedController::class, 'list']);
             Route::post('add', [SavedController::class, 'add']);
-            Route::post('delete', [SavedController::class, 'delete']);
+            Route::delete('delete', [SavedController::class, 'delete']);
         });
     });
 });

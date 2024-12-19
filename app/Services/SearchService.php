@@ -51,7 +51,6 @@ class SearchService
 
         return auth()->user()->searchHistory()->updateOrCreate(
             [
-                'user_id' => auth()->id(),
                 'searchable_id' => $id,
                 'searchable_type' => $type,
             ],
