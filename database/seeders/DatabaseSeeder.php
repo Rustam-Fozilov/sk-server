@@ -11,6 +11,8 @@ class DatabaseSeeder extends Seeder
         UserSeeder::class,
         TelegraphBotSeeder::class,
         TelegraphChatSeeder::class,
+        TagSeeder::class,
+        BlogSeeder::class,
     ];
 
     public function run(): void
