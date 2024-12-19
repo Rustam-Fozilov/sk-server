@@ -10,19 +10,32 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
 Route::get('search', [SearchController::class, 'search']);
-Route::post('login', [AuthController::class, 'login']);
+
+Route::prefix('auth')->group(function () {
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('confirm/code', [AuthController::class, 'confirmCode']);
+});
 
 Route::middleware('auth:sanctum')->group(function () {
+    Route::get('logout', [AuthController::class, 'logout']);
     Route::prefix('user')->group(function () {
         Route::get('me', [UserController::class, 'me']);
-        Route::get('saved', [UserController::class, 'saved']);
-        Route::get('search/history', [UserController::class, 'searchHistory']);
-        Route::post('search/save', [SearchController::class, 'save']);
-        Route::post('save', [SavedController::class, 'save']);
+
+        Route::prefix('search/history')->group(function () {
+            Route::get('list', [SearchController::class, 'searchHistoryList']);
+            Route::post('add', [SearchController::class, 'addSearchHistory']);
+            Route::post('delete', [SearchController::class, 'deleteSearchHistory']);
+        });
+
+        Route::prefix('saved')->group(function () {
+            Route::get('list', [SavedController::class, 'list']);
+            Route::post('add', [SavedController::class, 'add']);
+            Route::post('delete', [SavedController::class, 'delete']);
+        });
     });
 });
 
 Route::apiResources([
-    'blogs' => BlogController::class,
+    'blogs'        => BlogController::class,
     'universities' => UniversityController::class,
 ]);

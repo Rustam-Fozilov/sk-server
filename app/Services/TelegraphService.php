@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\User;
+use DefStudio\Telegraph\Client\TelegraphResponse;
 use DefStudio\Telegraph\DTO\Message;
 use DefStudio\Telegraph\Models\TelegraphChat;
 
@@ -20,7 +21,7 @@ class TelegraphService
         $this->chat = $chat;
     }
 
-    public function storePhoneNumber()
+    public function storePhoneNumber(): TelegraphResponse
     {
         $phone = $this->message->contact()->phoneNumber();
 
@@ -39,6 +40,22 @@ class TelegraphService
             ]
         );
 
-        return $this->chat->message('Rahmat! xabarnomalarni shu yerda kuting')->removeReplyKeyboard()->send();
+        $this->sendLoginCode();
+        return $this->chat->message('🔑 Yangi kod olish uchun /login ni bosing')->removeReplyKeyboard()->send();
+    }
+
+    public function sendLoginCode(): TelegraphResponse
+    {
+        $user = User::query()->where('chat_id', $this->chat->chat_id)->first();
+
+        if (!$user) {
+            return $this->chat->message('Siz ro\'yxatdan o\'tmagansiz. Iltimos, telefon raqamingizni yuboring')->send();
+        }
+
+//        $code = rand(100000, 999999);
+        $code = '111111';
+        $user->confirmCodes()->create(['code' => $code]);
+
+        return $this->chat->message("🔒 Kodingiz: <code>$code</code>")->send();
     }
 }

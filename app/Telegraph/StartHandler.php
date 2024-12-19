@@ -34,6 +34,21 @@ class StartHandler extends WebhookHandler
         }
     }
 
+    protected function handleCommand(Stringable $text): void
+    {
+        try {
+            $service = new TelegraphService($this->chat, $this->message);
+
+            if ($text->contains('start')) {
+                $this->start();
+            } else if ($text->contains('login')) {
+                $service->sendLoginCode();
+            }
+        } catch (\Exception|\Throwable|QueryException $e) {
+            $this->sendThrowToMe($e);
+        }
+    }
+
     public function sendThrowToMe(\Throwable|\Exception|QueryException $e): void
     {
         $message = "Message: " . $e->getMessage() . PHP_EOL;

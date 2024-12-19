@@ -21,16 +21,4 @@ class UserController extends Controller
         $data = $this->service->me();
         return success($data);
     }
-
-    public function saved(ListRequest $request): Resource
-    {
-        $data = $this->service->saved($request->validated());
-        return new Resource($data);
-    }
-
-    public function searchHistory(ListRequest $request): Resource
-    {
-        $data = $this->service->searchHistory($request->validated());
-        return new Resource($data);
-    }
 }

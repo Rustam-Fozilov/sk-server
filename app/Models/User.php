@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -34,11 +36,21 @@ class User extends Authenticatable
 
     public function savedItems()
     {
-        return $this->hasMany(Saved::class, 'user_id')->with('saveable');
+        return $this->hasMany(Saved::class, 'user_id', 'id')->with('saveable')->orderByDesc('id');
     }
 
     public function searchHistory()
     {
-        return $this->hasMany(SearchHistory::class, 'user_id')->with('searchable');
+        return $this->hasMany(SearchHistory::class, 'user_id', 'id')->with('searchable')->orderByDesc('searched_at');
+    }
+
+    public function confirmCodes(): HasMany
+    {
+        return $this->hasMany(ConfirmCode::class, 'user_id', 'id');
+    }
+
+    public function lastConfirmCode(): HasOne
+    {
+        return $this->hasOne(ConfirmCode::class, 'user_id', 'id')->latest();
     }
 }

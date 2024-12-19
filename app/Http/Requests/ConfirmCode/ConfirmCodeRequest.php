@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Http\Requests\Search;
+namespace App\Http\Requests\ConfirmCode;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
-class SaveSearchRequest extends FormRequest
+class ConfirmCodeRequest extends FormRequest
 {
     public function rules(): array
     {
         return [
-            'searchable_type' => 'required|string',
-            'searchable_id'   => 'required|integer',
+            'code' => 'required|size:6',
         ];
     }
 
