@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ListRequest;
+use App\Http\Requests\Blog\ListRequest;
 use App\Http\Resources\Resource;
 use App\Services\BlogService;
 use Illuminate\Http\JsonResponse;

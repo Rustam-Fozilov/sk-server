@@ -13,6 +13,9 @@ class BlogService
             ->when(isset($params['search']), function ($query) use ($params) {
                 $query->where('title', 'like', '%' . $params['search'] . '%');
             })
+            ->when(isset($params['tag']), function ($query) use ($params) {
+                $query->whereRelation('tags', 'tag_id', '=', $params['tag']);
+            })
             ->orderByDesc('id')
             ->paginate($params['per_page'] ?? 15);
     }
