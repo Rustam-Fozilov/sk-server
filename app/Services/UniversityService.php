@@ -18,8 +18,6 @@ class UniversityService
 
     public function show(int $id)
     {
-        return University::query()->findOr($id, function () {
-            throwError('University not found', 404);
-        });
+        return (new CheckService())->checkById(University::query(), $id);
     }
 }
