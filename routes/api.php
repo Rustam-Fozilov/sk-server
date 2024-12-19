@@ -10,7 +10,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
-Route::get('search', [SearchController::class, 'search']);
+Route::post('search', [SearchController::class, 'search']);
 Route::post('form', [ContactFormController::class, 'store']);
 
 Route::prefix('auth')->group(function () {
