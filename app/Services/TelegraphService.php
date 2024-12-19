@@ -54,6 +54,7 @@ class TelegraphService
 
 //        $code = rand(100000, 999999);
         $code = '111111';
+        $user->confirmCodes()->update(['is_used' => true]);
         $user->confirmCodes()->create(['code' => $code]);
 
         return $this->chat->message("🔒 Kodingiz: <code>$code</code>")->send();
