@@ -8,6 +8,7 @@ class DatabaseSeeder extends Seeder
 {
     public array $once_seeders = [
         UniversitySeeder::class,
+        UserSeeder::class,
     ];
 
     public function run(): void

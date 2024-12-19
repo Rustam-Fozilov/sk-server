@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'locale' => env('APP_LOCALE', 'en'),
+    'locale' => 'uz',
 
     'locales' => ['uz', 'uzc', 'ru'],
 

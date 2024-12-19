@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('surname')->nullable();
-            $table->string('phone')->nullable();
+            $table->string('phone');
             $table->boolean('is_admin')->default(false);
-            $table->string('password');
+            $table->string('chat_id')->nullable();
+            $table->string('password')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
