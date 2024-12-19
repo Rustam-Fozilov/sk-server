@@ -9,6 +9,8 @@ class DatabaseSeeder extends Seeder
     public array $once_seeders = [
         UniversitySeeder::class,
         UserSeeder::class,
+        TelegraphBotSeeder::class,
+        TelegraphChatSeeder::class,
     ];
 
     public function run(): void

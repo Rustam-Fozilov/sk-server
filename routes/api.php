@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\SavedController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UniversityController;
@@ -22,5 +23,6 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::apiResources([
+    'blogs' => BlogController::class,
     'universities' => UniversityController::class,
 ]);
