@@ -24,7 +24,7 @@ class SearchHistoryResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('user_id')->label('User ID')->required(),
+                Forms\Components\BelongsToSelect::make('user_id')->label('Foydalanuvchi')->relationship('user', 'name')->required(),
                 Forms\Components\TextInput::make('searchable_id')->label('Searchable ID')->required(),
                 Forms\Components\TextInput::make('searchable_type')->label('Searchable Type')->required(),
                 Forms\Components\TextInput::make('searched_at')

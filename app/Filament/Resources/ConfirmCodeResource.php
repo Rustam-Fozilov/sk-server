@@ -2,21 +2,21 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\SavedResource\Pages;
-use App\Models\Saved;
+use App\Filament\Resources\ConfirmCodeResource\Pages;
+use App\Models\ConfirmCode;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class SavedResource extends Resource
+class ConfirmCodeResource extends Resource
 {
-    protected static ?string $label = "Saqlangan";
+    protected static ?string $label = "Kod";
 
-    protected static ?string $pluralLabel = "Saqlanganlar";
+    protected static ?string $pluralLabel = "Kodlar";
 
-    protected static ?string $model = Saved::class;
+    protected static ?string $model = ConfirmCode::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -24,9 +24,9 @@ class SavedResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\TextInput::make('code')->label('Kod')->required(),
                 Forms\Components\BelongsToSelect::make('user_id')->label('Foydalanuvchi')->relationship('user', 'name')->required(),
-                Forms\Components\TextInput::make('saveable_id')->label('Saveable ID')->required(),
-                Forms\Components\TextInput::make('saveable_type')->label('Saveable Type')->required(),
+                Forms\Components\Checkbox::make('is_used')->label('Foydalanilganmi?')->required(),
             ]);
     }
 
@@ -35,11 +35,10 @@ class SavedResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('id')->label('ID')->sortable(),
-                Tables\Columns\TextColumn::make('user.name')->label('User')->searchable(),
-                Tables\Columns\TextColumn::make('user.id')->label('UserID')->searchable(),
-                Tables\Columns\TextColumn::make('saveable_type')->label('Searchable Type')->searchable(),
-                Tables\Columns\TextColumn::make('saveable_id')->label('Searchable ID')->searchable(),
-                Tables\Columns\TextColumn::make('created_at')->label('Created At')->dateTime(),
+                Tables\Columns\TextColumn::make('user.name')->searchable(),
+                Tables\Columns\TextColumn::make('code')->searchable(),
+                Tables\Columns\BooleanColumn::make('is_used'),
+                Tables\Columns\TextColumn::make('created_at')->dateTime(),
             ])
             ->filters([
                 //
@@ -64,9 +63,9 @@ class SavedResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListSaveds::route('/'),
-            'create' => Pages\CreateSaved::route('/create'),
-            'edit' => Pages\EditSaved::route('/{record}/edit'),
+            'index' => Pages\ListConfirmCodes::route('/'),
+            'create' => Pages\CreateConfirmCode::route('/create'),
+            'edit' => Pages\EditConfirmCode::route('/{record}/edit'),
         ];
     }
 }
