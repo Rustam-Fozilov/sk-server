@@ -10,6 +10,10 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
+Route::any('test', function (Request $request) {
+    //
+});
+
 Route::post('search', [SearchController::class, 'search']);
 Route::post('form', [ContactFormController::class, 'store']);
 

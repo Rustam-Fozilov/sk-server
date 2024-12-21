@@ -47,14 +47,12 @@ class UniversityResource extends Resource
                             ->label('Info')
                             ->required(),
                         Forms\Components\FileUpload::make('image_link')
+                            ->required()
                             ->image()
-                            ->deletable(true)
-                            ->fetchFileInformation(true)
-                            ->openable()
+                            ->imageEditor()
                             ->disk('public')
                             ->directory('universities')
                             ->label('Image')
-                            ->required(),
                     ])
                 ]),
             ]);
@@ -64,13 +62,13 @@ class UniversityResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id'),
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('address')->limit(20),
-                Tables\Columns\TextColumn::make('website')->limit(20),
-                Tables\Columns\TextColumn::make('info')->limit(20),
-                Tables\Columns\ImageColumn::make('image_link')->label('image')->limit(20),
-                Tables\Columns\TextColumn::make('created_at'),
+                    Tables\Columns\TextColumn::make('id')->label('ID')->sortable(),
+                    Tables\Columns\TextColumn::make('name')->searchable(),
+                    Tables\Columns\TextColumn::make('address')->limit(20),
+                    Tables\Columns\TextColumn::make('website')->limit(20),
+                    Tables\Columns\TextColumn::make('info')->limit(20),
+                    Tables\Columns\ImageColumn::make('image_link')->label('image'),
+                    Tables\Columns\TextColumn::make('created_at'),
                 ])
             ->filters([
                 //
