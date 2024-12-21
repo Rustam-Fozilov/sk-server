@@ -24,8 +24,8 @@ class ConfirmCodeResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('code')->label('Kod')->required(),
                 Forms\Components\BelongsToSelect::make('user_id')->label('Foydalanuvchi')->relationship('user', 'name')->required(),
+                Forms\Components\TextInput::make('code')->label('Kod')->required(),
                 Forms\Components\Checkbox::make('is_used')->label('Foydalanilganmi?')->required(),
             ]);
     }

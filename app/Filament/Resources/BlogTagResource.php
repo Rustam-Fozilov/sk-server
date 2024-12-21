@@ -34,7 +34,7 @@ class BlogTagResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('id')->label('ID')->sortable(),
-                Tables\Columns\TextColumn::make('blog.title')->limit(20)->searchable(),
+                Tables\Columns\TextColumn::make('blog.title')->limit(50)->searchable(),
                 Tables\Columns\TextColumn::make('tag.name')->searchable(),
                 Tables\Columns\TextColumn::make('created_at')->dateTime(),
             ])
