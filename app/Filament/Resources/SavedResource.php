@@ -26,7 +26,10 @@ class SavedResource extends Resource
             ->schema([
                 Forms\Components\BelongsToSelect::make('user_id')->label('Foydalanuvchi')->relationship('user', 'name')->required(),
                 Forms\Components\TextInput::make('saveable_id')->label('Saveable ID')->required(),
-                Forms\Components\TextInput::make('saveable_type')->label('Saveable Type')->required(),
+                Forms\Components\Select::make('saveable_type')->label('Likeable Type')->options([
+                    'App\Models\University' => 'University',
+                    'App\Models\Blog' => 'Blog',
+                ]),
             ]);
     }
 
