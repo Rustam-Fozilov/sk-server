@@ -39,6 +39,11 @@ class User extends Authenticatable
         return $this->hasMany(Saved::class, 'user_id', 'id')->with('saveable')->orderByDesc('id');
     }
 
+    public function likedItems()
+    {
+        return $this->hasMany(Liked::class, 'user_id', 'id')->with('likeable')->orderByDesc('id');
+    }
+
     public function searchHistory()
     {
         return $this->hasMany(SearchHistory::class, 'user_id', 'id')->with('searchable')->orderByDesc('searched_at');

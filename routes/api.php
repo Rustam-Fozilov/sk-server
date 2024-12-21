@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactFormController;
+use App\Http\Controllers\LikedController;
 use App\Http\Controllers\SavedController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UniversityController;
@@ -37,6 +38,12 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::get('list', [SavedController::class, 'list']);
             Route::post('add', [SavedController::class, 'add']);
             Route::delete('delete', [SavedController::class, 'delete']);
+        });
+
+        Route::prefix('liked')->group(function () {
+            Route::get('list', [LikedController::class, 'list']);
+            Route::post('add', [LikedController::class, 'add']);
+            Route::delete('delete', [LikedController::class, 'delete']);
         });
     });
 });
