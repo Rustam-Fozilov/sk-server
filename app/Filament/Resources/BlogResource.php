@@ -20,6 +20,8 @@ class BlogResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?int $navigationSort = 3;
+
     public static function form(Form $form): Form
     {
         return $form
@@ -28,6 +30,11 @@ class BlogResource extends Resource
                     Forms\Components\Section::make([
                         Forms\Components\TextInput::make('title')->label('Title')->required(),
                         Forms\Components\TextInput::make('read_minute')->numeric()->required(),
+                        Forms\Components\Select::make('tags')
+                            ->label('Tags')
+                            ->multiple()
+                            ->relationship('tags', 'name')
+                            ->required(),
                     ])
                 ]),
                 Forms\Components\Group::make()->schema([
