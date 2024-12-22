@@ -38,10 +38,17 @@ class BlogTagResource extends Resource
                 Tables\Columns\TextColumn::make('id')->label('ID')->sortable(),
                 Tables\Columns\TextColumn::make('blog.title')->limit(50)->searchable(),
                 Tables\Columns\TextColumn::make('tag.name')->searchable(),
-                Tables\Columns\TextColumn::make('created_at')->dateTime(),
+                Tables\Columns\TextColumn::make('created_at')->dateTime()->sortable(),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('blog_id')
+                    ->label('Blog')
+                    ->searchable()
+                    ->options(fn () => \App\Models\Blog::query()->pluck('title', 'id')->toArray()),
+                Tables\Filters\SelectFilter::make('tag_id')
+                    ->label('Tag')
+                    ->searchable()
+                    ->options(fn () => \App\Models\Tag::query()->pluck('name', 'id')->toArray()),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

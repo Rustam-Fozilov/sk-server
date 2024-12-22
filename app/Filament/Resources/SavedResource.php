@@ -44,10 +44,13 @@ class SavedResource extends Resource
                 Tables\Columns\TextColumn::make('user.id')->label('UserID')->searchable(),
                 Tables\Columns\TextColumn::make('saveable_type')->label('Searchable Type')->searchable(),
                 Tables\Columns\TextColumn::make('saveable_id')->label('Searchable ID')->searchable(),
-                Tables\Columns\TextColumn::make('created_at')->label('Created At')->dateTime(),
+                Tables\Columns\TextColumn::make('created_at')->label('Created At')->dateTime()->sortable(),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('user_id')
+                    ->label('User')
+                    ->searchable()
+                    ->options(fn () => \App\Models\User::query()->pluck('name', 'id')->toArray()),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

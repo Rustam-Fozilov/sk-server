@@ -40,11 +40,13 @@ class ConfirmCodeResource extends Resource
                 Tables\Columns\TextColumn::make('user.name')->searchable(),
                 Tables\Columns\TextColumn::make('code')->searchable(),
                 Tables\Columns\BooleanColumn::make('is_used'),
-                Tables\Columns\TextColumn::make('created_at')->dateTime(),
+                Tables\Columns\TextColumn::make('created_at')->dateTime()->sortable(),
             ])
             ->filters([
-                //
-            ])
+                Tables\Filters\SelectFilter::make('user_id')
+                    ->label('User')
+                    ->searchable()
+                    ->options(fn () => \App\Models\User::query()->pluck('name', 'id')->toArray()),            ])
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\ActionGroup::make([

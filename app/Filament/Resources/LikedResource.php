@@ -44,10 +44,13 @@ class LikedResource extends Resource
                 Tables\Columns\TextColumn::make('user.id')->label('UserID')->searchable(),
                 Tables\Columns\TextColumn::make('likeable_type')->label('Likeable Type')->searchable(),
                 Tables\Columns\TextColumn::make('likeable_id')->label('Likeable ID')->searchable(),
-                Tables\Columns\TextColumn::make('created_at')->label('Created At')->dateTime(),
+                Tables\Columns\TextColumn::make('created_at')->label('Created At')->dateTime()->sortable(),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('user_id')
+                    ->label('User')
+                    ->searchable()
+                    ->options(fn () => \App\Models\User::query()->pluck('name', 'id')->toArray()),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

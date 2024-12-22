@@ -62,7 +62,7 @@ class BlogResource extends Resource
                 Tables\Columns\TextColumn::make('content')->searchable()->limit(20),
                 Tables\Columns\TextColumn::make('read_minute'),
                 Tables\Columns\ImageColumn::make('image_link')->label('Image'),
-                Tables\Columns\TextColumn::make('created_at')->dateTime(),
+                Tables\Columns\TextColumn::make('created_at')->dateTime()->sortable(),
             ])
             ->filters([
                 //

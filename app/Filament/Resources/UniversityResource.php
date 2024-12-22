@@ -72,7 +72,7 @@ class UniversityResource extends Resource
                     Tables\Columns\TextColumn::make('website')->limit(20),
                     Tables\Columns\TextColumn::make('info')->limit(20),
                     Tables\Columns\ImageColumn::make('image_link')->label('image'),
-                    Tables\Columns\TextColumn::make('created_at')->dateTime(),
+                    Tables\Columns\TextColumn::make('created_at')->dateTime()->sortable(),
                 ])
             ->filters([
                 //
