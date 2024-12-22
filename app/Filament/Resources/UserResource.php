@@ -52,7 +52,7 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('id')->label('ID')->sortable(),
                 Tables\Columns\TextColumn::make('name')->searchable(),
                 Tables\Columns\TextColumn::make('surname')->searchable(),
-                Tables\Columns\TextColumn::make('phone')->searchable(),
+                Tables\Columns\TextColumn::make('phone')->searchable()->copyable(),
                 Tables\Columns\TextColumn::make('chat_id')->searchable(),
                 Tables\Columns\BooleanColumn::make('is_admin')->label('Is Admin'),
                 Tables\Columns\TextColumn::make('created_at')->dateTime(),

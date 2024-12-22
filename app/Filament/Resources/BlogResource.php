@@ -43,6 +43,7 @@ class BlogResource extends Resource
                         Forms\Components\FileUpload::make('image_link')
                             ->required()
                             ->image()
+                            ->openable()
                             ->imageEditor()
                             ->disk('public')
                             ->directory('blogs')

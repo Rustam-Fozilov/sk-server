@@ -11,6 +11,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Database\Query\Builder;
 
 class UniversityResource extends Resource
 {
@@ -52,6 +53,7 @@ class UniversityResource extends Resource
                             ->required()
                             ->image()
                             ->imageEditor()
+                            ->openable()
                             ->disk('public')
                             ->directory('universities')
                             ->label('Image')

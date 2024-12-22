@@ -16,4 +16,12 @@ class ListTags extends ListRecords
             Actions\CreateAction::make(),
         ];
     }
+
+    public function mount(): void
+    {
+        if (is_null($this->getTableSortColumn())) {
+            $this->tableSortColumn = 'id';
+            $this->tableSortDirection = 'desc';
+        }
+    }
 }
