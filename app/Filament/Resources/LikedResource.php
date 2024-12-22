@@ -18,7 +18,7 @@ class LikedResource extends Resource
 
     protected static ?string $model = Liked::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-heart';
 
     protected static ?int $navigationSort = 8;
 

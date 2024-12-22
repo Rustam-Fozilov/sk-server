@@ -18,7 +18,7 @@ class BlogTagResource extends Resource
 
     protected static ?string $model = BlogTag::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-hashtag';
 
     protected static ?int $navigationSort = 4;
 

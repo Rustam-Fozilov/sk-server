@@ -18,7 +18,7 @@ class SavedResource extends Resource
 
     protected static ?string $model = Saved::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-bookmark';
 
     protected static ?int $navigationSort = 7;
 

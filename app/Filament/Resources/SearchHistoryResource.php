@@ -12,13 +12,13 @@ use Filament\Tables\Table;
 
 class SearchHistoryResource extends Resource
 {
-    protected static ?string $label = "Qidiruv Tarixi";
+    protected static ?string $label = "Qidiruv tarixi";
 
-    protected static ?string $pluralLabel = "Qidiruv Tarixi";
+    protected static ?string $pluralLabel = "Qidiruvlar tarixi";
 
     protected static ?string $model = SearchHistory::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-magnifying-glass';
 
     protected static ?int $navigationSort = 6;
 

@@ -18,7 +18,7 @@ class ConfirmCodeResource extends Resource
 
     protected static ?string $model = ConfirmCode::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-qr-code';
 
     protected static ?int $navigationSort = 10;
 
