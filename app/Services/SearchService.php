@@ -13,6 +13,7 @@ class SearchService
         if (!is_null($search)) {
             $universities = University::query()
                 ->where('name', 'like', '%' . $search . '%')
+                ->orWhere('address', 'like', '%' . $search . '%')
                 ->get();
 
             $blogs = Blog::query()

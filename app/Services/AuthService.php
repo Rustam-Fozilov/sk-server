@@ -17,7 +17,7 @@ class AuthService
     {
         $code = (new CheckService())->checkByKeyValue(ConfirmCode::query(), 'code', $data['code'], __('auth.code_invalid'), true);
         $code->update(['is_used' => true]);
-        return $code->user->createToken('accessToken', expiresAt: Carbon::now()->addDay())->plainTextToken;
+        return $code->user->createToken('accessToken')->plainTextToken;
     }
 
     public function logout(): void
