@@ -9,7 +9,14 @@ class SavedService
 {
     public function list(array $params)
     {
-        return auth()->user()->savedItems()->paginate($params['per_page'] ?? 15);
+        $data = auth()->user()->savedItems()->with('saveable')->paginate($params['per_page'] ?? 15);
+
+        $data->getCollection()->transform(function ($item) {
+            $item->saveable->is_saved = true;
+            $item->saveable->saveable_type = $item->saveable_type === University::class ? 'university' : 'blog';
+            return $item->saveable;
+        });
+        return $data;
     }
 
     public function add(array $params)

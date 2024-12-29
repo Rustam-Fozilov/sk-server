@@ -46,6 +46,8 @@ class UniversityService
                 ->where('likeable_id', $uni->id)
                 ->exists();
         }
+
+        $uni->like_count = $uni->likes()->count();
         return $uni;
     }
 }
