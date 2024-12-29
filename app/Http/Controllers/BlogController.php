@@ -27,4 +27,10 @@ class BlogController extends Controller
         $data = $this->service->show($id);
         return success($data);
     }
+
+    public function latest(Request $request): JsonResponse
+    {
+        $data = $this->service->latest();
+        return success($data);
+    }
 }

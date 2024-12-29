@@ -14,11 +14,11 @@ class SearchService
             $universities = University::query()
                 ->where('name', 'like', '%' . $search . '%')
                 ->orWhere('address', 'like', '%' . $search . '%')
-                ->get();
+                ->paginate(10)->items();
 
             $blogs = Blog::query()
                 ->where('title', 'like', '%' . $search . '%')
-                ->get();
+                ->paginate(10)->items();
         }
 
         return [
@@ -29,7 +29,13 @@ class SearchService
 
     public function searchHistoryList(array $params)
     {
-        return auth()->user()->searchHistory()->paginate($params['per_page'] ?? 15);
+        $data = auth()->user()->searchHistory()->paginate($params['per_page'] ?? 15);
+
+        $data->getCollection()->transform(function ($item) {
+            $item->searchable->searchable_type = $item->searchable_type === University::class ? 'university' : 'blog';
+            return $item->searchable;
+        });
+        return $data;
     }
 
     public function addSearchHistory(array $params)

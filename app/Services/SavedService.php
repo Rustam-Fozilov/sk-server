@@ -9,7 +9,7 @@ class SavedService
 {
     public function list(array $params)
     {
-        $data = auth()->user()->savedItems()->with('saveable')->paginate($params['per_page'] ?? 15);
+        $data = auth()->user()->savedItems()->paginate($params['per_page'] ?? 15);
 
         $data->getCollection()->transform(function ($item) {
             $item->saveable->is_saved = true;

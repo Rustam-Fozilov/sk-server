@@ -24,4 +24,9 @@ class BlogService
     {
         return (new CheckService())->checkById(Blog::with(['tags']), $id);
     }
+
+    public function latest()
+    {
+        return Blog::with(['tags'])->orderByDesc('id')->first();
+    }
 }

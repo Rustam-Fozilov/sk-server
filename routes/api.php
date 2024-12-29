@@ -17,6 +17,7 @@ Route::any('test', function (Request $request) {
 
 Route::post('search', [SearchController::class, 'search']);
 Route::post('form', [ContactFormController::class, 'store']);
+Route::get('blogs/latest', [BlogController::class, 'latest']);
 
 Route::prefix('auth')->group(function () {
     Route::post('login', [AuthController::class, 'login']);

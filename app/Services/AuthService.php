@@ -16,7 +16,7 @@ class AuthService
     public function confirmCode(array $data): string
     {
         $code = (new CheckService())->checkByKeyValue(ConfirmCode::query(), 'code', $data['code'], __('auth.code_invalid'), true);
-        $code->update(['is_used' => true]);
+//        $code->update(['is_used' => true]);
         return $code->user->createToken('accessToken')->plainTextToken;
     }
 
