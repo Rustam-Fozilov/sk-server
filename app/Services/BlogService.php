@@ -20,7 +20,6 @@ class BlogService
             ->orderByDesc('id')
             ->paginate($params['per_page'] ?? 15);
 
-            
         if (!is_null($user)) {
             $blogs->getCollection()->transform(function ($item) use ($user) {
                 $item->is_saved = $user->savedItems()
