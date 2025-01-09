@@ -52,8 +52,7 @@ class TelegraphService
             return $this->chat->message('Siz ro\'yxatdan o\'tmagansiz. Iltimos, telefon raqamingizni yuboring')->send();
         }
 
-//        $code = rand(100000, 999999);
-        $code = '111111';
+        $code = rand(100000, 999999);
         $user->confirmCodes()->update(['is_used' => true]);
         $user->confirmCodes()->create(['code' => $code]);
 
