@@ -39,7 +39,6 @@ class BlogResource extends Resource
                 ]),
                 Forms\Components\Group::make()->schema([
                     Forms\Components\Section::make([
-                        Forms\Components\MarkdownEditor::make('content')->required(),
                         Forms\Components\FileUpload::make('image_link')
                             ->required()
                             ->image()
@@ -50,6 +49,9 @@ class BlogResource extends Resource
                             ->label('Image'),
                     ])
                 ]),
+                Forms\Components\Section::make([
+                    Forms\Components\MarkdownEditor::make('content')->required(),
+                ])
             ]);
     }
 

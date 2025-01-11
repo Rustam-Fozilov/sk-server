@@ -46,9 +46,6 @@ class UniversityResource extends Resource
                 Group::make()
                 ->schema([
                     Section::make([
-                        Forms\Components\MarkdownEditor::make('info')
-                            ->label('Info')
-                            ->required(),
                         Forms\Components\FileUpload::make('image_link')
                             ->required()
                             ->image()
@@ -59,6 +56,11 @@ class UniversityResource extends Resource
                             ->label('Image')
                     ])
                 ]),
+                Section::make([
+                    Forms\Components\MarkdownEditor::make('info')
+                        ->label('Info')
+                        ->required(),
+                ])
             ]);
     }
 
