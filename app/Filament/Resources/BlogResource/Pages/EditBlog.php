@@ -20,6 +20,8 @@ class EditBlog extends EditRecord
 
     protected function beforeSave(): void
     {
-        (new FileService())->deleteByPath($this->record->image_link);
+        if ($this->getRecord()->image_link !== $this->record->image_link) {
+            (new FileService())->deleteByPath($this->getRecord()->image_link);
+        }
     }
 }
