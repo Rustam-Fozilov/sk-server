@@ -16,9 +16,4 @@ class ListRequest extends FormRequest
             'tag'       => 'nullable|exists:tags,id',
         ];
     }
-
-    protected function failedValidation(Validator $validator): void
-    {
-        failedValidation($validator);
-    }
 }

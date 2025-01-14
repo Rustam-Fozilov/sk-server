@@ -14,9 +14,4 @@ class AddRequest extends FormRequest
             'likeable_id'   => 'required|integer',
         ];
     }
-
-    protected function failedValidation(Validator $validator): void
-    {
-        failedValidation($validator);
-    }
 }

@@ -14,9 +14,4 @@ class AddHistoryRequest extends FormRequest
             'searchable_id'   => 'required|integer',
         ];
     }
-
-    protected function failedValidation(Validator $validator): void
-    {
-        failedValidation($validator);
-    }
 }

@@ -16,9 +16,4 @@ class CreateRequest extends FormRequest
             'message' => 'required|string',
         ];
     }
-
-    protected function failedValidation(Validator $validator): void
-    {
-        failedValidation($validator);
-    }
 }

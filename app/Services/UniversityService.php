@@ -9,13 +9,16 @@ class UniversityService
 {
     public function all(array $params): LengthAwarePaginator
     {
+        $order_by = $params['order_by'] ?? 'id';
+        $order_direction = $params['order_direction'] ?? 'desc';
+
         $user = auth('sanctum')->user();
         $unis = University::query()
             ->when(isset($params['search']), function ($query) use ($params) {
                 $query->where('name', 'like', '%' . $params['search'] . '%')
                     ->orWhere('address', 'like', '%' . $params['search'] . '%');
             })
-            ->orderByDesc('id')
+            ->orderBy($order_by, $order_direction)
             ->paginate($params['per_page'] ?? 15);
 
         if (!is_null($user)) {

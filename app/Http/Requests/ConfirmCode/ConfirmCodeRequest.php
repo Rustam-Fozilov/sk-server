@@ -13,9 +13,4 @@ class ConfirmCodeRequest extends FormRequest
             'code' => 'required|size:6',
         ];
     }
-
-    protected function failedValidation(Validator $validator): void
-    {
-        failedValidation($validator);
-    }
 }
